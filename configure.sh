@@ -121,33 +121,38 @@ function enter_variable_hidden() {
 source ./alis.conf
 
 if ask "Enable TRIM?"; then
-    sed -i 's/DEVICE_TRIM="false"/DEVICE_TRIM="true"/g' ./alis.conf
+    sed -i 's/DEVICE_TRIM=".*"/DEVICE_TRIM="true"/g' ./alis.conf
+else
+    sed -i 's/DEVICE_TRIM=".*"/DEVICE_TRIM="false"/g' ./alis.conf
 fi
 
 if ask "Enable LUKS?"; then
     luks_pass=$(enter_variable " - LUKS encryption password")
-    sed -i "s/LUKS_PASSWORD=\"archlinux\"/LUKS_PASSWORD=\"$luks_pass\"/g" ./alis.conf
-    sed -i "s/LUKS_PASSWORD_RETYPE=\"archlinux\"/LUKS_PASSWORD_RETYPE=\"$luks_pass\"/g" ./alis.conf
+    sed -i "s/LUKS_PASSWORD=\".*\"/LUKS_PASSWORD=\"$luks_pass\"/g" ./alis.conf
+    sed -i "s/LUKS_PASSWORD_RETYPE=\".*\"/LUKS_PASSWORD_RETYPE=\"$luks_pass\"/g" ./alis.conf
+else
+    sed -i "s/LUKS_PASSWORD=\".*\"/LUKS_PASSWORD=\"\"/g" ./alis.conf
+    sed -i "s/LUKS_PASSWORD_RETYPE=\".*\"/LUKS_PASSWORD_RETYPE=\"\"/g" ./alis.conf
 fi
 
 # Reflector
 country=$(enter_variable " - Reflector Country?", $REFLECTOR_COUNTRIES)
-sed -i "s/REFLECTOR_COUNTRIES=(\"Canada\")/REFLECTOR_COUNTRIES=(\"$country\")/g" ./alis.conf
+sed -i "s/REFLECTOR_COUNTRIES=(\".*\")/REFLECTOR_COUNTRIES=(\"$country\")/g" ./alis.conf
 
 # Hostname
 hostname=$(enter_variable " - Hostname?", $HOSTNAME)
-sed -i "s/HOSTNAME=\"archlinux\"/HOSTNAME=\"$hostname\"/g" ./alis.conf
+sed -i "s/HOSTNAME=\".*\"/HOSTNAME=\"$hostname\"/g" ./alis.conf
 
 # Root password
 root_pass=$(enter_variable " - Root password")
-sed -i "s/ROOT_PASSWORD=\"archlinux\"/ROOT_PASSWORD=\"$root_pass\"/g" ./alis.conf
-sed -i "s/ROOT_PASSWORD_RETYPE=\"archlinux\"/ROOT_PASSWORD_RETYPE=\"$root_pass\"/g" ./alis.conf
+sed -i "s/ROOT_PASSWORD=\".*\"/ROOT_PASSWORD=\"$root_pass\"/g" ./alis.conf
+sed -i "s/ROOT_PASSWORD_RETYPE=\".*\"/ROOT_PASSWORD_RETYPE=\"$root_pass\"/g" ./alis.conf
 
 # Username
 username=$(enter_variable " - Username", $USER_NAME)
-sed -i "s/USER_NAME=\"archlinux\"/USER_NAME=\"$username\"/g" ./alis.conf
+sed -i "s/USER_NAME=\".*\"/USER_NAME=\"$username\"/g" ./alis.conf
 
 # User password
 user_pass=$(enter_variable " - Password for $username")
-sed -i "s/USER_PASSWORD=\"archlinux\"/USER_PASSWORD=\"$user_pass\"/g" ./alis.conf
-sed -i "s/USER_PASSWORD_RETYPE=\"archlinux\"/USER_PASSWORD_RETYPE=\"$user_pass\"/g" ./alis.conf
+sed -i "s/USER_PASSWORD=\".*\"/USER_PASSWORD=\"$user_pass\"/g" ./alis.conf
+sed -i "s/USER_PASSWORD_RETYPE=\".*\"/USER_PASSWORD_RETYPE=\"$user_pass\"/g" ./alis.conf
