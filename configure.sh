@@ -141,7 +141,7 @@ sed -i "s/REFLECTOR_COUNTRIES=(\".*\")/REFLECTOR_COUNTRIES=(\"$country\")/g" ./a
 
 # Hostname
 hostname=$(enter_variable " - Hostname?", $HOSTNAME)
-sed -i "s/HOSTNAME=\".*\"/HOSTNAME=\"$hostname\"/g" ./alis.conf
+sed -i "s/^HOSTNAME=\".*\"/HOSTNAME=\"$hostname\"/g" ./alis.conf
 
 # Root password
 root_pass=$(enter_variable " - Root password")
