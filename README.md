@@ -65,13 +65,13 @@ Follow the <a href="https://wiki.archlinux.org/index.php/Arch_Linux">Arch Way</a
 Internet connection is required, with wireless WIFI connection see <a href="https://wiki.archlinux.org/index.php/Wireless_network_configuration#Wi-Fi_Protected_Access">Wireless_network_configuration</a> to bring up WIFI connection before start the installation.
 
 ```
-# # Start the system with lastest Arch Linux installation media
-# loadkeys [keymap]
-# curl https://raw.githubusercontent.com/picodotdev/alis/master/download.sh | bash, or with URL shortener curl -sL https://bit.ly/2F3CATp | bash
-# # Edit alis.conf and change variables values with your preferences
-# vim alis.conf
-# # Start
-# ./alis.sh
+# Start the system with lastest Arch Linux installation media
+loadkeys [keymap]
+curl -sL https://git.io/JfNQK | bash
+# Run configure to config simple settings
+./configure.sh
+# Start
+./alis.sh
 ```
 
 ### Installation with asciinema vídeo
@@ -81,7 +81,7 @@ As another form of log.
 ```
 # # Start the system with lastest Arch Linux installation media
 # loadkeys [keymap]
-# curl https://raw.githubusercontent.com/picodotdev/alis/master/download.sh | bash, or with URL shortener curl -sL https://bit.ly/2F3CATp | bash
+# curl -sL https://git.io/JfNQK | bash
 # ./alis-asciinema.sh
 # # Edit alis.conf and change variables values with your preferences
 # vim alis.conf
