@@ -5,6 +5,9 @@ set -e
 # and customized Arch Linux system.
 # Copyright (C) 2018 picodotdev
 
+# Install wget dependency
+pacman -Sy --noconfirm wget
+
 rm -f alis.conf
 rm -f alis.sh
 rm -f alis-asciinema.sh
