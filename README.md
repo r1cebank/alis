@@ -74,7 +74,7 @@ curl -sL https://git.io/JfNQK | bash
 ./alis.sh
 ```
 
-### Installation with asciinema vídeo
+### Installation with asciinema video
 
 As another form of log.
 

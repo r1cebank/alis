@@ -333,7 +333,7 @@ function configure_network() {
 
         sed -i 's/^Interface=.*/Interface='"$WIFI_INTERFACE"'/' /etc/netctl/wireless-wpa
         sed -i 's/^ESSID=.*/ESSID='"$WIFI_ESSID"'/' /etc/netctl/wireless-wpa
-        sed -i 's/^Key=.*/Key='"$WIFI_KEY"'/' /etc/netctl/wireless-wpa
+        sed -i 's/^Key=.*/Key=\"'"$WIFI_KEY"'\"/' /etc/netctl/wireless-wpa
         if [ "$WIFI_HIDDEN" == "true" ]; then
             sed -i 's/^#Hidden=.*/Hidden=yes/' /etc/netctl/wireless-wpa
         fi
@@ -530,7 +530,6 @@ function partition() {
         dd if=/dev/zero of=/mnt$SWAPFILE bs=1M count=$SWAP_SIZE status=progress
         chmod 600 /mnt$SWAPFILE
         mkswap /mnt$SWAPFILE
-        swapon /mnt$SWAPFILE
     fi
 
     # set variables
