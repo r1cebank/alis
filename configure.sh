@@ -126,6 +126,15 @@ else
     sed -i 's/DEVICE_TRIM=".*"/DEVICE_TRIM="false"/g' ./alis.conf
 fi
 
+if ask "Wireless install?"; then
+  interface=$(enter_variable " - Wireless interface", "wlan0")
+  ssid=$(enter_variable " - SSID")
+  wireless_pass=$(enter_variable " - Wireless password")
+  sed -i "s/WIFI_INTERFACE=\"\"/WIFI_INTERFACE=\"$interface\"/g" ./alis.conf
+  sed -i "s/WIFI_ESSID=\".*\"/WIFI_ESSID=\"$ssid\"/g" ./alis.conf
+  sed -i "s/WIFI_KEY=\".*\"/WIFI_KEY=\"$wireless_pass\"/g" ./alis.conf
+fi
+
 if ask "Enable LUKS?"; then
     luks_pass=$(enter_variable " - LUKS encryption password")
     sed -i "s/LUKS_PASSWORD=\".*\"/LUKS_PASSWORD=\"$luks_pass\"/g" ./alis.conf
