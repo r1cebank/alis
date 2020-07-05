@@ -135,6 +135,7 @@ function check_variables() {
     check_variables_list "KERNELS_COMPRESSION" "$KERNELS_COMPRESSION" "gzip bzip2 lzma xz lzop lz4" "false"
     check_variables_value "TIMEZONE" "$TIMEZONE"
     check_variables_boolean "REFLECTOR" "$REFLECTOR"
+    check_variables_boolean "ENABLE_MULTILIB" "$ENABLE_MULTILIB"
     check_variables_value "PACMAN_MIRROR" "$PACMAN_MIRROR"
     check_variables_value "LOCALES" "$LOCALES"
     check_variables_value "LOCALE_CONF" "$LOCALE_CONF"
@@ -563,6 +564,11 @@ function install() {
 
     sed -i 's/#Color/Color/' /mnt/etc/pacman.conf
     sed -i 's/#TotalDownload/TotalDownload/' /mnt/etc/pacman.conf
+
+    if [ "$ENABLE_MULTILIB" == "true" ]; then
+        sed -i 's/#\[multilib]/\[multilib]/g' /mnt/etc/pacman.conf
+        sed -i '/^#\[multilib]/{N;s/\n#/\n/}' /mnt/etc/pacman.conf
+    fi
 }
 
 function configuration() {
