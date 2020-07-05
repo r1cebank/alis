@@ -120,6 +120,12 @@ function enter_variable_hidden() {
 
 source ./alis.conf
 
+if ask "NVME?"; then
+    sed -i 's/DEVICE=""/DEVICE="\/dev\/nvme0n1"/g' ./alis.conf
+else
+    sed -i 's/DEVICE=""/DEVICE="\/dev\/sda"/g' ./alis.conf
+fi
+
 if ask "Enable TRIM?"; then
     sed -i 's/DEVICE_TRIM=".*"/DEVICE_TRIM="true"/g' ./alis.conf
 else
