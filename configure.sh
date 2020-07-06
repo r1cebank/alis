@@ -120,6 +120,9 @@ function enter_variable_hidden() {
 
 source ./alis.conf
 
+echo "When entering passwords, passwords will be displayed in plaintext. Check your surroundings."
+read -n 1 -r -s -p $'Press enter to continue...\n'
+
 if ask "NVME?"; then
     sed -i 's/DEVICE=""/DEVICE="\/dev\/nvme0n1"/g' ./alis.conf
 else
